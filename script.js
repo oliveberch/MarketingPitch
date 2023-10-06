@@ -1,32 +1,29 @@
-// JavaScript logic for generating marketing pitch
+import { process } from "./env.js";
+import { Configuration, OPENAIApi } from "/node_modules/openai";
+
+const configuration = new Configuration({
+  apiKey: process.env.OPEN_API_KEY,
+});
+
+const openAi = new OPENAIApi(configuration);
+
 document.getElementById("generate-pitch-btn").addEventListener("click", () => {
   const productDetails = document.getElementById("product-details").value;
-
   if (productDetails) {
-    // Make an API request to generate the marketing pitch based on product details
+    // Make an func request to generate the marketing pitch based on product details
     generateMarketingPitch(productDetails);
   }
 });
 
-function generateMarketingPitch(productDetails) {
-  // You can make an API request to your AI model or use any language model (e.g., GPT-3) here
-  // Sample request to a fictional API (replace with your actual implementation)
-  fetch("/api/generate-marketing-pitch", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ productDetails }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      const marketingPitchText = data.marketingPitch; // Extract the generated pitch
-      displayMarketingPitch(marketingPitchText);
-    })
-    .catch((error) => {
-      console.error("Error generating marketing pitch:", error);
-      displayMarketingPitch("An error occurred while generating the pitch.");
-    });
+async function generateMarketingPitch(productDetails) {
+  const pitchPrompt = generatePrompt(productDetails);
+  const pitch = await openAi.createCompletion({
+    model: "text-curie-001",
+    prompt: `${pitchPrompt}`,
+    max_tokens: 25,
+  });
+  const marketingPitchText = pitch.data.choices[0].text.trim(); // Extract the generated pitch
+  displayMarketingPitch(marketingPitchText);
 }
 
 function displayMarketingPitch(marketingPitchText) {
