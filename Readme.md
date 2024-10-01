@@ -1,6 +1,6 @@
 # Marketing Pitch Generator
 
-Marketing Pitch Generator is a web application that provides users with a suitable marketing pitch based on their product. It leverages AI to analyze product details and generate a compelling marketing pitch tailored to the product and current marketing trends.
+a web application that returns suitable marketing pitch based on product. It analyzes product details and generate a marketing pitch tailored to the product and current marketing trends.
 
 ## Features
 
@@ -42,13 +42,4 @@ To run this project locally, follow these steps:
 
 2. Open `index.html` in your preferred web browser.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/oliveberch/MarketingPitch/blob/main/LICENSE) file for details.
-
-## Acknowledgments
-
-- Inspired by the potential of AI in marketing.
-- Built with love and dedication to making marketing easier for businesses.
-
-Feel free to contribute to this project, report issues, or suggest improvements. Happy marketing!
+Feel free to contribute to this project, report issues, or suggest improvements.
